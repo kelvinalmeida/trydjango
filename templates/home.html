@@ -4,4 +4,27 @@
 {% block content %}
 <h1>Home Screem</h1>
 <p>Hi, i'm template</p>
+
+<ul>
+
+    <p>maior que 5</p>
+    {% for list_item in my_list %}
+    {% if list_item > 5 %}
+    <li>{{list_item|add:10}}</li>
+    {% elif list_item == 3 %}
+    <li>Eu sou o numero 3</li>
+    {% else %}
+    <li><s>{{list_item}}</s></li>
+    {% endif %}
+    {% endfor %}
+
+    <p>menor que 5</p>
+    {% for list_item in my_list %}
+    {% if list_item < 5 %} <li>{{list_item}}</li>
+        {% else %}
+        <li><s>{{list_item}}</s></li>
+        {% endif %}
+        {% endfor %}
+</ul>
+
 {% endblock %}

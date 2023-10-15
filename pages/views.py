@@ -7,7 +7,12 @@ def home_view(request,*args, **kwargs):
     # print(args)
     # print(kwargs)
     # print(request.user)
-    return render(request, "home.html", {})
+
+    my_home_ctx = {
+        "my_list": [1,2,3,4,6,7,8],
+        "is_true": True,
+    }
+    return render(request, "home.html", my_home_ctx)
 
 def contact_view(request,*args, **kwargs):
     return render(request, "contact.html", {})

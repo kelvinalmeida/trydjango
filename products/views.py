@@ -5,11 +5,15 @@ from .models import Product
 def product_detail_veiw(request):
     obj = Product.objects.get(id=1)
 
+    # my_ctx = {
+    #     "title": obj.title,
+    #     "description": obj.description,
+    #     "price": obj.price,
+    #     "summary": obj.sumary,
+    # }
+
     my_ctx = {
-        "title": obj.title,
-        "description": obj.description,
-        "price": obj.price,
-        "summary": obj.sumary,
+        "object": obj,
     }
 
-    return render(request, "product/detail.html", my_ctx)
+    return render(request, "products/product_detail.html", my_ctx)

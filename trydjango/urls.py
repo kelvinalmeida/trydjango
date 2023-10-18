@@ -25,6 +25,6 @@ urlpatterns = [
     path('contact/', contact_view),
     path('imagem/', imagem_view),
     path('create/', product_create_veiw),
-    path('product/', product_detail_veiw),
+    path('product/<int:id>/', product_detail_veiw),
     path('admin/', admin.site.urls),
 ]

@@ -4,16 +4,23 @@ from .models import Product
 
 # Create your views here.
 
-def product_create_veiw(request):
-    my_form = RawProdoctForm()
+# def product_create_veiw(request):
     
-    if request.method == 'POST':
-        my_form = RawProdoctForm(request.POST)
+#     my_form = RawProdoctForm(initial=initial_values)
+    
+#     if request.method == 'POST':
+#         my_form = RawProdoctForm(request.POST)
+#         if my_form.is_valid():
+#             # the data is good 
+#             print(my_form.cleaned_data)
+            
+#             # dicionário transformado em argumentos usando **
+#             Product.objects.create(**my_form.cleaned_data)
 
-    my_ctx = {
-        "form": my_form
-    }
-    return render(request, "products/product_create.html", my_ctx)
+#     my_ctx = {
+#         "form": my_form
+#     }
+#     return render(request, "products/product_create.html", my_ctx)
 
 # def product_create_veiw(request):
 #     # print(request.GET)
@@ -29,25 +36,32 @@ def product_create_veiw(request):
 #         print(title)
 #         print('Fiz GET')
 
-    my_ctx = {}
+    # my_ctx = {}
+    # return render(request, "products/product_create.html", my_ctx)
+
+
+def product_create_veiw(request):
+
+    productObj = Product.objects.get(id=1)
+
+    initial_values = {
+        'title': 'I\'m the good product'
+    }
+
+    form = ProductForm(request.POST or None, instance=productObj)
+
+    if form.is_valid():
+        form.save()
+        form = ProductForm()
+
+    my_ctx = {
+        "form": form,
+    }
+
     return render(request, "products/product_create.html", my_ctx)
 
-
-# def product_create_veiw(request):
-#     form = ProductForm(request.POST or None)
-
-#     if form.is_valid():
-#         form.save()
-#         form = ProductForm()
-
-#     my_ctx = {
-#         "form": form,
-#     }
-
-#     return render(request, "products/product_create.html", my_ctx)
-
-def product_detail_veiw(request):
-    obj = Product.objects.get(id=1)
+def product_detail_veiw(request, id:int):
+    obj = Product.objects.get(id=id)
 
     # my_ctx = {
     #     "title": obj.title,

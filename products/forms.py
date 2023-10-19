@@ -51,3 +51,24 @@ class RawProdoctForm(forms.Form):
             raise forms.ValidationError("O titulo precisa ter a palavra: kelvin")
 
         return title
+
+class UpdateProdoctForm(forms.Form):
+
+    product_id = forms.DecimalField()
+
+
+    # def clean_product_id(self, *args, **kwargs):
+    #     product_id = self.cleaned_data.get('product_id')
+    #     queryset = Product.objects.all()
+        
+    #     available_ids = map(self.take_id, queryset)
+
+    #     print(available_ids)
+
+    #     if not "kelvin" in title:
+    #         raise forms.ValidationError("O titulo precisa ter a palavra: kelvin")
+
+    #     return title
+    
+    # def take_id(self, instance):
+    #     return instance.id

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .forms import ProductForm, RawProdoctForm
+from .forms import ProductForm, RawProdoctForm,  UpdateProdoctForm
+
 from .models import Product
 
 from django.http import Http404
@@ -63,6 +64,27 @@ def product_create_veiw(request):
 
     return render(request, "products/product_create.html", my_ctx)
 
+def product_update_veiw(request):
+
+    # if request.method == 'POST':
+
+
+    # productObj = Product.objects.get(id=1)
+
+    # form = ProductForm(request.POST or None, instance=productObj)
+    form = product_update_veiw(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        form = product_update_veiw()
+
+    my_ctx = {
+        "form": form,
+    }
+
+    return render(request, "products/update_product_create.html", my_ctx)
+
+
 def product_detail_veiw(request, id:int):
 
     # obj = Product.objects.get(id=id)
@@ -110,6 +132,16 @@ def product_delete_veiw(request, id:int):
 
     return render(request, "products/product_delete.html", my_ctx)
 
+def product_list_veiw(request):
+
+    # obj = Product.objects.get(id=id)
+    queryset = Product.objects.all()
+
+    my_ctx = {
+        "object_list": queryset,
+    }
+
+    return render(request, "products/product_list.html", my_ctx)
 def product_list_veiw(request):
 
     # obj = Product.objects.get(id=id)

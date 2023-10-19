@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import ProductForm, RawProdoctForm
 from .models import Product
+
+from django.http import Http404
 
 # Create your views here.
 
@@ -42,13 +44,14 @@ from .models import Product
 
 def product_create_veiw(request):
 
-    productObj = Product.objects.get(id=1)
+    # productObj = Product.objects.get(id=1)
 
     initial_values = {
         'title': 'I\'m the good product'
     }
 
-    form = ProductForm(request.POST or None, instance=productObj)
+    # form = ProductForm(request.POST or None, instance=productObj)
+    form = ProductForm(request.POST or None)
 
     if form.is_valid():
         form.save()
@@ -61,7 +64,16 @@ def product_create_veiw(request):
     return render(request, "products/product_create.html", my_ctx)
 
 def product_detail_veiw(request, id:int):
-    obj = Product.objects.get(id=id)
+
+    # obj = Product.objects.get(id=id)
+
+    obj = get_object_or_404(Product, id=id)
+
+    # The same as above
+    # try:
+    #     obj = Product.objects.get(id=id)
+    # except Product.DoesNotExist:
+    #     raise Http404
 
     # my_ctx = {
     #     "title": obj.title,
@@ -75,3 +87,36 @@ def product_detail_veiw(request, id:int):
     }
 
     return render(request, "products/product_detail.html", my_ctx)
+
+
+
+def product_delete_veiw(request, id:int):
+
+    # obj = Product.objects.get(id=id)
+    obj = get_object_or_404(Product, id=id)
+
+    if request.method == 'POST':
+        obj.delete()
+
+    # The same as above
+    # try:
+    #     obj = Product.objects.get(id=id)
+    # except Product.DoesNotExist:
+    #     raise Http404
+
+    my_ctx = {
+        "object": obj,
+    }
+
+    return render(request, "products/product_delete.html", my_ctx)
+
+def product_list_veiw(request):
+
+    # obj = Product.objects.get(id=id)
+    queryset = Product.objects.all()
+
+    my_ctx = {
+        "object_list": queryset,
+    }
+
+    return render(request, "products/product_list.html", my_ctx)

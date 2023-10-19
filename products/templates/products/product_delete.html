@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>You want delete that product from the Data Base?</h1>
+<p>{{ object.title }}</p>
+<p>{{ object.description }}</p>
+<p>{{ object.price }}</p>
+
+
+<form method="post"> {% csrf_token %}
+    <!-- <input type="number" name="id-product"> -->
+    <input type="submit" value="Yes">
+    <input type="button" value="Cancel" src="../products/">
+</form>
+{% endblock %}

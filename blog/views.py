@@ -10,10 +10,12 @@ from .models import Article
 class ArticleListView(ListView):
     template_name = 'articles/article_list.html'
     queryset = Article.objects.all()
+    context_object_name = 'articles'
 
 class ArticleDetailView(DetailView):
     template_name = 'articles/article_detail.html'
     queryset = Article.objects.all()
+    context_object_name = 'artic'
 
     # def get_object(self):
     #     id_ = self.kwargs.get("id")

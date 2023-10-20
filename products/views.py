@@ -146,6 +146,7 @@ def product_list_veiw(request):
     }
 
     return render(request, "products/product_list.html", my_ctx)
+
 def product_list_veiw(request):
 
     # obj = Product.objects.get(id=id)

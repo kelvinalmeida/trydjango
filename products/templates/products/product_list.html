@@ -5,7 +5,15 @@
 {% for instance in object_list %}
 <p>------------------</p>
 <p>
-    <a href="{{ instance.get_absolute_url }}"> {{instance.title}}</a>
+    <a href="{{ instance.get_absolute_url }}">Titulo: {{instance.title}}</a>
+    <br>
+    <a> Description: {{instance.description}}</a>
+    <br>
+    <a> Price: {{instance.price}}</a>
+    <br>
+    <br>
+    <a href="{{ instance.get_absolute_url_update }}">Atualizar</a>
+    <a href="{{ instance.get_absolute_url_delete }}">Deletar</a>
 </p>
 
 {% endfor %}

@@ -64,19 +64,23 @@ def product_create_veiw(request):
 
     return render(request, "products/product_create.html", my_ctx)
 
-def product_update_veiw(request):
+def product_update_veiw(request, id):
 
+    # print(request.POST)
+    # print(request.GET)
+    
     # if request.method == 'POST':
+    product = Product.objects.get(id=id)
+
 
 
     # productObj = Product.objects.get(id=1)
 
     # form = ProductForm(request.POST or None, instance=productObj)
-    form = product_update_veiw(request.POST or None)
+    form = UpdateProdoctForm(request.POST or None, instance=product)
 
     if form.is_valid():
         form.save()
-        form = product_update_veiw()
 
     my_ctx = {
         "form": form,

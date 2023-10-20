@@ -52,9 +52,15 @@ class RawProdoctForm(forms.Form):
 
         return title
 
-class UpdateProdoctForm(forms.Form):
-
-    product_id = forms.DecimalField()
+class UpdateProdoctForm(forms.ModelForm):
+    
+    class Meta:
+        model = Product
+        fields = [
+            'title',
+            'description',
+            'price',
+        ] 
 
 
     # def clean_product_id(self, *args, **kwargs):

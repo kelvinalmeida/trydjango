@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>ALL PRODUCTS</h1>
-{% for instance in object_list %}
+
+{% for instance in objects_list %}
 <p>------------------</p>
+
 <p>
     <a href="{{ instance.get_absolute_url }}"> {{instance.title}}</a>
 </p>

@@ -21,6 +21,7 @@ from products.views import product_detail_veiw, product_create_veiw, product_del
 
 urlpatterns = [
     path('product/', include('products.urls')),
+    path('blog/', include('blog.urls')),
     path('', home_view, name='home'),
     path('<int:id>/', about_view, name="product_detail"),
     path('contact/', contact_view, name="product_detail"),

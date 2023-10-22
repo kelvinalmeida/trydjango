@@ -2,4 +2,8 @@
 
 {% block content %}
 <h1>All Courses</h1>
+{% for instance in objects %}
+<P>--------------</P>
+<h2>{{instance.title}}</h2>
+{% endfor %}
 {% endblock %}
